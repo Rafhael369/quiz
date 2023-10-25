@@ -1,0 +1,244 @@
+{
+    "questoes":[
+       {
+          "questao":"Qual é a função da função 'len()' em Python?",
+          "opcoes":[
+             "Converter um valor para inteiro",
+             "Calcular o seno de um número",
+             "Retornar o tamanho de uma sequência",
+             "Arredondar um número"
+          ],
+          "resposta_correta":2,
+          "dificuldade":0,
+          "tema":"Python"
+       },
+       {
+          "questao":"Em Python, qual declaração é usada para criar uma função?",
+          "opcoes":[
+             "funcao minha_funcao():",
+             "nova_funcao = função():",
+             "def minha_funcao():",
+             "criar função minha_funcao:"
+          ],
+          "resposta_correta":2,
+          "dificuldade":1,
+          "tema":"Python"
+       },
+       {
+          "questao":"Em Python, qual estrutura de dados é imutável?",
+          "opcoes":[
+             "Lista",
+             "Tupla",
+             "Dicionário",
+             "Conjunto"
+          ],
+          "resposta_correta":1,
+          "dificuldade":0,
+          "tema":"Python"
+       },
+       {
+          "questao":"O que o método 'append()' faz em uma lista Python?",
+          "opcoes":[
+             "Remove o último elemento da lista",
+             "Adiciona um elemento no início da lista",
+             "Adiciona um elemento ao final da lista",
+             "Cria uma nova lista"
+          ],
+          "resposta_correta":2,
+          "dificuldade":1,
+          "tema":"Python"
+       },
+       {
+          "questao":"Qual é a maneira correta de comentar múltiplas linhas de código em Python?",
+          "opcoes":[
+             "/* Este é um comentário */",
+             "# Este é um comentário",
+             "// Este é um comentário",
+             "''' Este é um comentário '''"
+          ],
+          "resposta_correta":3,
+          "dificuldade":0,
+          "tema":"Python"
+       },
+       {
+          "questao":"Qual é a função da instrução 'import' em Python?",
+          "opcoes":[
+             "Exportar uma função de um arquivo para outro",
+             "Importar módulos ou pacotes para uso no código",
+             "Copiar dados de um arquivo para outro",
+             "Declarar uma nova variável"
+          ],
+          "resposta_correta":1,
+          "dificuldade":1,
+          "tema":"Python"
+       },
+       {
+          "questao":"Em Python, qual é a maneira correta de abrir um arquivo chamado 'texto.txt' em modo de leitura?",
+          "opcoes":[
+             "open('texto.txt', 'r')",
+             "open('texto.txt', 'read')",
+             "open('texto.txt', 'w')",
+             "open('texto.txt', 'write')"
+          ],
+          "resposta_correta":0,
+          "dificuldade":0,
+          "tema":"Python"
+       },
+       {
+          "questao":"Qual é a função do operador '==' em Python?",
+          "opcoes":[
+             "Realizar uma comparação de valores",
+             "Atribuir um valor a uma variável",
+             "Verificar se um valor é maior que outro",
+             "Verificar se um valor é igual a zero"
+          ],
+          "resposta_correta":0,
+          "dificuldade":1,
+          "tema":"Python"
+       },
+       {
+          "questao":"Qual é a função do operador 'in' em Python?",
+          "opcoes":[
+             "Verificar se um valor é menor que outro",
+             "Verificar se um valor existe em uma sequência",
+             "Concatenar strings",
+             "Realizar uma operação de divisão"
+          ],
+          "resposta_correta":1,
+          "dificuldade":0,
+          "tema":"Python"
+       },
+       {
+          "questao":"Qual é o resultado da expressão: 3 ** 2?",
+          "opcoes":[
+             "6",
+             "9",
+             "11",
+             "12"
+          ],
+          "resposta_correta":1,
+          "dificuldade":1,
+          "tema":"Python"
+       },
+       {
+          "questao":"Qual é a função do operador 'typeof' em JavaScript?",
+          "opcoes":[
+             "Verificar se uma variável está definida",
+             "Determinar o tipo de uma variável",
+             "Comparar duas variáveis",
+             "Realizar uma operação de divisão"
+          ],
+          "resposta_correta":1,
+          "dificuldade":0,
+          "tema":"JavaScript"
+       },
+       {
+          "questao":"Qual é a maneira correta de criar uma função em JavaScript?",
+          "opcoes":[
+             "funcao minhaFuncao()",
+             "def minhaFuncao()",
+             "function = minhaFuncao {}",
+             "function minhaFuncao()"
+          ],
+          "resposta_correta":3,
+          "dificuldade":1,
+          "tema":"JavaScript"
+       },
+       {
+          "questao":"Qual método é usado para adicionar um elemento ao final de um array em JavaScript?",
+          "opcoes":[
+             ".push()",
+             ".add()",
+             ".insert()",
+             ".append()"
+          ],
+          "resposta_correta":0,
+          "dificuldade":0,
+          "tema":"JavaScript"
+       },
+       {
+          "questao":"Qual é a sintaxe correta para selecionar um elemento pelo seu ID em JavaScript?",
+          "opcoes":[
+             "selectElementById('elementID')",
+             "$('#elementID')",
+             "document.getElement('elementID')",
+             "document.getElementById('elementID')"
+          ],
+          "resposta_correta":3,
+          "dificuldade":1,
+          "tema":"JavaScript"
+       },
+       {
+          "questao":"O que o método 'addEventListener()' faz em JavaScript?",
+          "opcoes":[
+             "Remove um elemento do DOM",
+             "Altera o estilo de um elemento",
+             "Adiciona um manipulador de eventos a um elemento",
+             "Cria uma nova função"
+          ],
+          "resposta_correta":2,
+          "dificuldade":0,
+          "tema":"JavaScript"
+       },
+       {
+          "questao":"Qual é a saída do seguinte código JavaScript: console.log(2 + '2');",
+          "opcoes":[
+             "22",
+             "4",
+             "Erro de sintaxe",
+             "undefined"
+          ],
+          "resposta_correta":0,
+          "dificuldade":1,
+          "tema":"JavaScript"
+       },
+       {
+          "questao":"Qual é o método usado para remover o último elemento de um array em JavaScript?",
+          "opcoes":[
+             ".pop()",
+             ".remove()",
+             ".delete()",
+             ".end()"
+          ],
+          "resposta_correta":0,
+          "dificuldade":0,
+          "tema":"JavaScript"
+       },
+       {
+          "questao":"O que o operador '===' verifica em JavaScript?",
+          "opcoes":[
+             "Igualdade estrita de valor e tipo",
+             "Igualdade de valor",
+             "Igualdade estrita de tipo",
+             "Inexistência de valor"
+          ],
+          "resposta_correta":0,
+          "dificuldade":1,
+          "tema":"JavaScript"
+       },
+       {
+          "questao":"Qual é o resultado da expressão: 5 % 2?",
+          "opcoes":[
+             "2.5",
+             "1",
+             "2",
+             "0.5"
+          ],
+          "resposta_correta":1,
+          "dificuldade":0,
+          "tema":"JavaScript"
+       },
+       {
+          "questao":"Qual é a função do método 'JSON.parse()' em JavaScript?",
+          "opcoes":[
+             "Transformar um objeto JavaScript em uma string JSON",
+             "Transformar uma string JSON em um objeto JavaScript",
+             "Realizar uma operação de adição",
+             "Verificar a sintaxe de um código JavaScript"
+          ],
+          "resposta_correta":1,
+          "dificuldade":1,
+          "tema":"JavaScript"
+       }
+    ]
+ }
