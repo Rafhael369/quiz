@@ -3,17 +3,17 @@ import json
 # classe para representar uma questao
 class Questao:
     # metodo construtor (reorganizar)
-    def __init__(self, questao, opcoes , resposta, dificuldade, tema):
+    def __init__(self, questao, opcoes , resposta_correta, dificuldade, tema):
         self.questao = questao
         self.opcoes = opcoes
-        self.resposta = resposta
+        self.resposta_correta = resposta_correta
         self.dificuldade = dificuldade
         self.tema = tema
 
 
     # metodo para corrigir a resposta 
     def corrigir(self, resposta_usuario):
-        return resposta_usuario == str(self.resposta)
+        return resposta_usuario == str(self.resposta_correta)
     
      # metodo para criar as questoes (retirado do QuestaoFactory)
     def criar_questoes(self):

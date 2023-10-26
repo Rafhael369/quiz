@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import jsonify
 from questoes_factory import QuestaoFactory, Questao
 from pontuacao_strategy import PontuacaoStrategyFacil, PontuacaoStrategyDificil
 
@@ -26,14 +26,13 @@ class Quiz:
         if self.questoes[self.questao_atual].dificuldade == 0:
             self.pontuacao_strategy = PontuacaoStrategyFacil()
         else:
-            self.pontuacao_strategy = PontuacaoStrategyDificil()
-
-    
+            self.pontuacao_strategy = PontuacaoStrategyDificil()    
 
     # metodo para listar o nome dos temas das perguntas e permitir que o usuario escolha um
-    def escolher_tema(self):
+    def temas(self):
         temas = [] 
         temas_formatado = []     
+
         # percorre os temas e guarda
         for tema in self.questoes:
             if temas == []:
@@ -41,55 +40,49 @@ class Quiz:
             if tema.tema != temas[-1]:
                 temas.append(tema.tema)
 
-        print("Escolha um tema:")
-        # percorre os temas e enumera
-        for i, tema in enumerate(temas):
-            print(f"{i}) {tema}")
-            temas_formatado.append([i, tema])
-            
-        # deixa o usuario escolher o tema e seta o tema na instancia da classe Quiz
-        tema = int(input("Digite o numero do tema: "))
-        for i in temas_formatado:
-            if i[0] == tema:
-                print()
-                print(f"Você escolheu o tema {i[1]}")
-                self.tema = i[1]
-                break
+        temas_formatado = [{"id": i, "nome": tema} for i, tema in enumerate(temas)]
+        return temas_formatado
+
+    def perguntas(self, tema):
+        self.questoes = [questao for questao in self.questoes if questao.tema == tema]  
+        perguntas_formatado = [{"id": i, "questao": questao.questao, "opcoes": questao.opcoes, 
+                                "resposta_correta": questao.resposta_correta, "dificuldade": questao.dificuldade} for i, questao in enumerate(self.questoes)]
+        return perguntas_formatado     
 
     # inicio do quiz
-    def iniciar_quiz(self):
-        self.escolher_tema()
-        self.questoes = [questao for questao in self.questoes if questao.tema == self.tema]
-        while self.questao_atual < len(self.questoes):
-            self.mostrar_questao()
-            # input padrao com 4 resposta
-            resposta_usuario = input("Digite a resposta correta: ")
+    # def iniciar_quiz(self):
+    #     return self.escolher_tema()
+        # primeira_questao = self.questoes[0]
+        # return jsonify({
+        #     "questao": primeira_questao.questao,
+        #     "opcoes": primeira_questao.opcoes,
+        # })
+        # self.questoes = [questao for questao in self.questoes if questao.tema == self.tema]
+        # while self.questao_atual < len(self.questoes):
+        #     self.mostrar_questao()
+        #     # input padrao com 4 resposta
+        #     resposta_usuario = input("Digite a resposta correta: ")
             
-            # confere a resposta
-            print()
-            if self.questoes[self.questao_atual].corrigir(resposta_usuario):
-                # calcula a pontuacao com base na strategy setada
-                self.escolher_pontuacao_strategy()
-                self.pontuacao += self.pontuacao_strategy.calcular_pontuacao()
-                print("Parabéns! Você acertou!")
-            else:
-                print("Que pena! Você errou!")
-                print("Resposta correta: ", str(self.questoes[self.questao_atual].resposta) + ")", self.questoes[self.questao_atual].opcoes[self.questoes[self.questao_atual].resposta])
-            self.questao_atual += 1
-        # quando sair do while, seta a pontuação final
-        print(f"\nPontuação final: {self.pontuacao}/{len(self.questoes)*10}")
-        print("Fim do quiz!")
+        #     # confere a resposta
+        #     print()
+        #     if self.questoes[self.questao_atual].corrigir(resposta_usuario):
+        #         # calcula a pontuacao com base na strategy setada
+        #         self.escolher_pontuacao_strategy()
+        #         self.pontuacao += self.pontuacao_strategy.calcular_pontuacao()
+        #         print("Parabéns! Você acertou!")
+        #     else:
+        #         print("Que pena! Você errou!")
+        #         print("Resposta correta: ", str(self.questoes[self.questao_atual].resposta) + ")", self.questoes[self.questao_atual].opcoes[self.questoes[self.questao_atual].resposta])
+        #     self.questao_atual += 1
+        # # quando sair do while, seta a pontuação final
+        # print(f"\nPontuação final: {self.pontuacao}/{len(self.questoes)*10}")
+        # print("Fim do quiz!")
 
     # metodo que mostra a pergunta
-    def mostrar_questao(self):
-        questao = self.questoes[self.questao_atual]
-        print(f"\nPergunta {self.questao_atual+1}: {questao.questao}")
-        for i, opcao in enumerate(questao.opcoes):
-            print(f"{i}) {opcao}")
+    # def mostrar_questao(self):
+    #     questao = self.questoes[self.questao_atual]
+    #     print(f"\nPergunta {self.questao_atual+1}: {questao.questao}")
+    #     for i, opcao in enumerate(questao.opcoes):
+    #         print(f"{i}) {opcao}")
 
-app = Flask(__name__)
 
-@app.route("/")
-def inicio():
-    quiz = Quiz()
-    quiz.iniciar_quiz()
