@@ -1,4 +1,3 @@
-from flask import Flask
 from questoes_factory import QuestaoFactory, Questao
 from pontuacao_strategy import PontuacaoStrategyFacil, PontuacaoStrategyDificil
 
@@ -87,9 +86,7 @@ class Quiz:
         for i, opcao in enumerate(questao.opcoes):
             print(f"{i}) {opcao}")
 
-app = Flask(__name__)
 
-@app.route("/")
-def inicio():
+if __name__ == "__main__":
     quiz = Quiz()
     quiz.iniciar_quiz()
