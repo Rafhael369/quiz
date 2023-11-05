@@ -49,40 +49,11 @@ class Quiz:
                                 "resposta_correta": questao.resposta_correta, "dificuldade": questao.dificuldade} for i, questao in enumerate(self.questoes)]
         return perguntas_formatado     
 
-    # inicio do quiz
-    # def iniciar_quiz(self):
-    #     return self.escolher_tema()
-        # primeira_questao = self.questoes[0]
-        # return jsonify({
-        #     "questao": primeira_questao.questao,
-        #     "opcoes": primeira_questao.opcoes,
-        # })
-        # self.questoes = [questao for questao in self.questoes if questao.tema == self.tema]
-        # while self.questao_atual < len(self.questoes):
-        #     self.mostrar_questao()
-        #     # input padrao com 4 resposta
-        #     resposta_usuario = input("Digite a resposta correta: ")
-            
-        #     # confere a resposta
-        #     print()
-        #     if self.questoes[self.questao_atual].corrigir(resposta_usuario):
-        #         # calcula a pontuacao com base na strategy setada
-        #         self.escolher_pontuacao_strategy()
-        #         self.pontuacao += self.pontuacao_strategy.calcular_pontuacao()
-        #         print("Parabéns! Você acertou!")
-        #     else:
-        #         print("Que pena! Você errou!")
-        #         print("Resposta correta: ", str(self.questoes[self.questao_atual].resposta) + ")", self.questoes[self.questao_atual].opcoes[self.questoes[self.questao_atual].resposta])
-        #     self.questao_atual += 1
-        # # quando sair do while, seta a pontuação final
-        # print(f"\nPontuação final: {self.pontuacao}/{len(self.questoes)*10}")
-        # print("Fim do quiz!")
-
-    # metodo que mostra a pergunta
-    # def mostrar_questao(self):
-    #     questao = self.questoes[self.questao_atual]
-    #     print(f"\nPergunta {self.questao_atual+1}: {questao.questao}")
-    #     for i, opcao in enumerate(questao.opcoes):
-    #         print(f"{i}) {opcao}")
-
-
+    def correcao(self, pergunta_id, resposta):
+        self.questao_atual = int(pergunta_id)
+        if self.questoes[self.questao_atual].corrigir(resposta):
+            self.escolher_pontuacao_strategy()
+            self.pontuacao += self.pontuacao_strategy.calcular_pontuacao()
+            return jsonify({"pontuacao": self.pontuacao, "correcao": True})
+        else:
+            return jsonify({"pontuacao": self.pontuacao, "correcao": False})

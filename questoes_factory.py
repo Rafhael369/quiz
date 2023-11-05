@@ -13,6 +13,7 @@ class Questao:
 
     # metodo para corrigir a resposta 
     def corrigir(self, resposta_usuario):
+        print(resposta_usuario, self.resposta_correta)
         return resposta_usuario == str(self.resposta_correta)
     
      # metodo para criar as questoes (retirado do QuestaoFactory)

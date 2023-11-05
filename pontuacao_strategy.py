@@ -10,10 +10,10 @@ class PontuacaoStrategy(ABC):
 class PontuacaoStrategyFacil(PontuacaoStrategy):
     # retorna 5 se a pergunta for facil (0)
     def calcular_pontuacao(self):
-        return int((100/75)*5)
+        return int(round((100/75)*5))
 
 # classe que implementa o calcullo de pontuacao dificil
 class PontuacaoStrategyDificil(PontuacaoStrategy):
     # retorna 10 se a pergunta for dificil (1)
     def calcular_pontuacao(self):
-        return int((100/75)*10)
+        return int(round((100/75)*10))
