@@ -51,9 +51,11 @@ npm install
 ```
 
 6. Inicie o servidor React.
-``` npm start ```
+``` 
+npm start
+```
 
-7. Acesse a aplicação. 
+7. Acesse a aplicação: 
 ```http://localhost:5173```
 
 
