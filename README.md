@@ -22,21 +22,39 @@ git clone https://github.com/Rafhael369/quiz.git
 ```
 
 2. Navegue até o diretório do projeto.
-``` cd quiz ```
+``` 
+cd quiz 
+```
 
-3. Instale as dependências do projeto.
-``` pip install -r requirements.txt ```
+3. Crie um ambiente virtual, ative e instale as dependências do projeto.
+```
+python3 -m venv env
+```
+```
+source env/bin/activate
+```
+```
+pip install -r requirements.txt 
+```
 
 4. Inicie o servidor Flask.
-``` python app.py ```
+``` 
+python quiz.py 
+```
 
-5. Navegue até o diretório do frontend e instale as dependências do projeto.
-``` cd client ```
-``` npm install ```
-
+5. Em outro terminal, navegue até o diretório do frontend e instale as dependências do projeto.
+``` 
+cd frontend 
+```
+``` 
+npm install 
+```
 
 6. Inicie o servidor React.
 ``` npm start ```
+
+7. Acesse a aplicação. 
+```http://localhost:5173```
 
 
 ## Contribuição
