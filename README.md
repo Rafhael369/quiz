@@ -17,7 +17,9 @@ O aplicativo Quiz é uma plataforma interativa que permite aos usuários respond
 Para executar o projeto, siga os passos abaixo:
 
 1. Clone o repositório para sua máquina local.
-``` git clone https://github.com/Rafhael369/quiz.git ```
+``` 
+git clone https://github.com/Rafhael369/quiz.git 
+```
 
 2. Navegue até o diretório do projeto.
 ``` cd quiz ```
