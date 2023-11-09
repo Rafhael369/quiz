@@ -39,7 +39,7 @@ pip install -r requirements.txt
 
 4. Inicie o servidor Flask.
 ``` 
-python quiz.py 
+python3 app.py 
 ```
 
 5. Em outro terminal, navegue até o diretório do frontend e instale as dependências do projeto.
@@ -52,7 +52,7 @@ npm install
 
 6. Inicie o servidor React.
 ``` 
-npm start
+npm run dev
 ```
 
 7. Acesse a aplicação: 

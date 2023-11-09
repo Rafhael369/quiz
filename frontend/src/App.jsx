@@ -8,11 +8,13 @@ export default function App() {
   const [start, setStart] = useState(false);
   const [inicio, setInicio] = useState(true);
   const [themes, setThemes] = useState([])
+  const [quant, setQuant] = useState([2, 4, 6, 8, 10])
   const [iniciarPerguntas, setIniciarPerguntas] = useState(false)
   const [perguntas, setPerguntas] = useState([])
-  const [correcao, setCorrecao] = useState([])
   const [acertou, setAcertou] = useState(false)
   const [errou, setErrou] = useState(false)
+  const [quantidadeSelecionada, setquantidadeSelecionada] = useState(false)
+  const [temaSelecionado, setTemaSelecionado] = useState('')
 
   const iniciar = async () => {
     setInicio(false)
@@ -21,26 +23,34 @@ export default function App() {
     setThemes(themesAxios.data)
   }
 
-  const tema = async (nome) => {
-    const perguntasAxios = await axios.get(`http://localhost:5000/perguntas/${nome}`)
+  const tema = async (tema, quantidade) => {
+    var botao = document.getElementById("tema");
+    botao.style.backgroundColor = "green"
+    const perguntasAxios = await axios.get(`http://localhost:5000/perguntas/${tema}/${quantidade}`)
     setPerguntas(perguntasAxios.data)
     setStart(false)
     setIniciarPerguntas(true)
   }
 
+  const escolha_quantidade = async (quant) => {
+    tema(temaSelecionado, quant)
+  }
+
+  const cor = async () => {
+    var botao = document.getElementById("tema");
+    botao.style.backgroundColor = "green"
+  }
+
 
 	const handleAnswerOptionClick = async (pergunta, resposta) => {
     const correcaoAxios = await axios.get(`http://localhost:5000/correcao/${pergunta.id}/${resposta}`)
-    setCorrecao(correcaoAxios.data)
 
-    if(correcao) {
-      console.log(correcao)
-      setScore(correcao.pontuacao)
-      if (correcao.correcao) {
-        console.log('acertou')
+    if(correcaoAxios.data) {
+      console.log(correcaoAxios.data)
+      setScore(correcaoAxios.data.pontuacao)
+      if (correcaoAxios.data.correcao) {
         setAcertou(true)
       } else {
-        console.log('errou')
         setErrou(true)
       }
     }
@@ -81,16 +91,27 @@ export default function App() {
           <>
           </>
         )}
-        {start ? (
+        {start || !quantidadeSelecionada && !inicio ? (
           <>
           <div className='question-section'>
 						<div className='question-count'>
 							<span>Tema</span>
 						</div>
 					</div>
-					<div className='answer-section'>
+					<div >
             {themes.map((theme) => (
-              <button onClick={() => tema(theme.nome)}>{theme.nome}</button>))  
+              <button id="tema" onClick={() => [setTemaSelecionado(theme.nome), cor()]}>{theme.nome}</button>))  
+            }
+					</div>
+
+          <div className='question-section'>
+            <div className='question-count'>
+							<span>Quantidade</span>
+						</div>      
+					</div>
+          <div>
+            {quant.map((quant) => (
+              <button onClick={() => [setquantidadeSelecionada(true), escolha_quantidade(quant)]}>{quant}</button>))  
             }
 					</div>
           </>
@@ -98,7 +119,7 @@ export default function App() {
           <>
           </>
         )}
-        {iniciarPerguntas ? (
+        {iniciarPerguntas && quantidadeSelecionada ? (
           <>
           <div className='question-section'>
 						<div className='question-count'>

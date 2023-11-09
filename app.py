@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from quiz.quiz import Quiz
+from backend.quiz import Quiz
 
 quiz = Quiz()
 app = Flask(__name__)
@@ -15,9 +15,9 @@ def corrigir(pergunta_id, resposta):
 def temas():
     return quiz.temas()
 
-@app.route("/perguntas/<tema>", methods=["GET"])
-def trazer_perguntas(tema):
-    return quiz.perguntas(tema)
+@app.route("/perguntas/<tema>/<quantidade>", methods=["GET"])
+def trazer_perguntas(tema, quantidade):
+    return quiz.perguntas(tema, quantidade)
 
 @app.route("/finalizar", methods=["GET"])
 def finalizar():

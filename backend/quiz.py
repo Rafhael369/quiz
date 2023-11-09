@@ -1,6 +1,6 @@
 from flask import jsonify
-from quiz.backend.questoes_factory import QuestaoFactory, Questao
-from quiz.backend.pontuacao_strategy import PontuacaoStrategyFacil, PontuacaoStrategyDificil
+from backend.questoes_factory import Questao
+from backend.pontuacao_strategy import PontuacaoStrategyFacil, PontuacaoStrategyDificil
 
 class Quiz:
 
@@ -43,17 +43,19 @@ class Quiz:
         temas_formatado = [{"id": i, "nome": tema} for i, tema in enumerate(temas)]
         return temas_formatado
 
-    def perguntas(self, tema):
-        self.questoes = [questao for questao in self.questoes if questao.tema == tema]  
+    def perguntas(self, tema, quantidade):
+        self.questoes = [questao for questao in self.questoes if questao.tema == tema]
         perguntas_formatado = [{"id": i, "questao": questao.questao, "opcoes": questao.opcoes, 
-                                "resposta_correta": questao.resposta_correta, "dificuldade": questao.dificuldade} for i, questao in enumerate(self.questoes)]
+                                "resposta_correta": questao.resposta_correta, "dificuldade": questao.dificuldade} for i, questao in enumerate(self.questoes[:int(quantidade)])]
         return perguntas_formatado     
 
     def correcao(self, pergunta_id, resposta):
         self.questao_atual = int(pergunta_id)
         if self.questoes[self.questao_atual].corrigir(resposta):
+            print("ACERTOU")
             self.escolher_pontuacao_strategy()
             self.pontuacao += self.pontuacao_strategy.calcular_pontuacao()
             return jsonify({"pontuacao": self.pontuacao, "correcao": True})
         else:
+            print("ERROU")
             return jsonify({"pontuacao": self.pontuacao, "correcao": False})

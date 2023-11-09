@@ -13,8 +13,9 @@ class Questao:
 
     # metodo para corrigir a resposta 
     def corrigir(self, resposta_usuario):
-        print(resposta_usuario, self.resposta_correta)
-        return resposta_usuario == str(self.resposta_correta)
+        if (str(resposta_usuario) == str(self.resposta_correta)):
+            return True
+        return False
     
      # metodo para criar as questoes (retirado do QuestaoFactory)
     def criar_questoes(self):
@@ -31,7 +32,7 @@ class CarregarJson:
     def organizar_perguntas():
         todas_questoes = []
         # abre o arquivo json
-        with open("quiz.json", "r") as arquivo:
+        with open("backend/quiz.json", "r") as arquivo:
             # carrega os dados do arquivo
             dados = json.load(arquivo)
             for questoes in dados["questoes"]:
