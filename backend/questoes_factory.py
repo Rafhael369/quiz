@@ -17,6 +17,9 @@ class Questao:
             return True
         return False
     
+    def resposta(self):
+        return self.resposta_correta
+    
      # metodo para criar as questoes (retirado do QuestaoFactory)
     def criar_questoes(self):
         objetos_questoes = []

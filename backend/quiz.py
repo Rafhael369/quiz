@@ -52,10 +52,8 @@ class Quiz:
     def correcao(self, pergunta_id, resposta):
         self.questao_atual = int(pergunta_id)
         if self.questoes[self.questao_atual].corrigir(resposta):
-            print("ACERTOU")
             self.escolher_pontuacao_strategy()
             self.pontuacao += self.pontuacao_strategy.calcular_pontuacao()
-            return jsonify({"pontuacao": self.pontuacao, "correcao": True})
+            return jsonify({"pontuacao": self.pontuacao, "correcao": True, "resposta": self.questoes[self.questao_atual].resposta()})
         else:
-            print("ERROU")
-            return jsonify({"pontuacao": self.pontuacao, "correcao": False})
+            return jsonify({"pontuacao": self.pontuacao, "correcao": False, "resposta": self.questoes[self.questao_atual].resposta()})
