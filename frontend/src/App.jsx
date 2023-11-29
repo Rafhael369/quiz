@@ -15,6 +15,7 @@ export default function App() {
   const [errou, setErrou] = useState(false)
   const [quantidadeSelecionada, setquantidadeSelecionada] = useState(false)
   const [temaSelecionado, setTemaSelecionado] = useState('')
+  const [resposta_correta, setResposta_correta] = useState()
 
   // ao iniciar buscamos os temas
   const iniciar = async () => {
@@ -46,11 +47,12 @@ export default function App() {
   }
 
   // ao clicar em uma opção de resposta
-  const handleAnswerOptionClick = async (pergunta, resposta) => {
+  const responder = async (pergunta, resposta) => {
     const correcaoAxios = await axios.get(`http://localhost:5000/correcao/${pergunta.id}/${resposta}`)
 
     if (correcaoAxios.data) {
-      console.log(correcaoAxios.data)
+      setResposta_correta(correcaoAxios.data.resposta)
+      console.log(correcaoAxios)
       setScore(correcaoAxios.data.pontuacao)
       if (correcaoAxios.data.correcao) {
         setAcertou(true)
@@ -66,10 +68,10 @@ export default function App() {
       } else {
         setShowScore(true);
       }
+      setResposta_correta('')
       setAcertou(false)
       setErrou(false)
-    }, 700);
-
+    }, 1000);
   };
 
   return (
@@ -99,9 +101,6 @@ export default function App() {
                   }
                 </div>
               </div>
-
-
-
               <div className='question-count'>
                 <span>Quantidade</span>
                 <div>
@@ -131,7 +130,9 @@ export default function App() {
               </div>
               <div className='answer-section'>
                 {perguntas[currentQuestion].opcoes.map((answerOption, index) => (
-                  <button style={{ marginTop: '10px' }} onClick={() => handleAnswerOptionClick(perguntas[currentQuestion], index)}>{answerOption}</button>
+                  <button style={{ marginTop: '10px',
+                  backgroundColor: index === resposta_correta ? 'green' : '' 
+                }} onClick={() => responder(perguntas[currentQuestion], index)}>{answerOption}</button>
                 ))}
               </div>
             </>
