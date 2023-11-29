@@ -1,6 +1,6 @@
 from flask import jsonify
-from backend.questoes_factory import Questao
-from backend.pontuacao_strategy import PontuacaoStrategyFacil, PontuacaoStrategyDificil
+from questoes_factory import Questao
+from pontuacao_strategy import PontuacaoStrategyFacil, PontuacaoStrategyDificil
 
 class Quiz:
 

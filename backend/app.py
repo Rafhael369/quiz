@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from backend.quiz import Quiz
+from quiz import Quiz
 
 quiz = Quiz()
 app = Flask(__name__)

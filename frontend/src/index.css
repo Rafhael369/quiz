@@ -44,6 +44,7 @@ body {
 
 .question-text {
   margin-bottom: 12px;
+  font-size: 25px;
 }
 
 .timer-text {
@@ -79,10 +80,12 @@ button {
 
 .correct {
   background-color: #2f922f;
+  font-size: 25px;
 }
 
 .incorrect {
   background-color: #ff3333;
+  font-size: 25px;
 }
 
 button:hover {

@@ -32,7 +32,7 @@ class CarregarJson:
     def organizar_perguntas():
         todas_questoes = []
         # abre o arquivo json
-        with open("backend/quiz.json", "r") as arquivo:
+        with open("quiz.json", "r") as arquivo:
             # carrega os dados do arquivo
             dados = json.load(arquivo)
             for questoes in dados["questoes"]:
