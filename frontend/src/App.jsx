@@ -13,16 +13,31 @@ export default function App() {
   const [perguntas, setPerguntas] = useState([])
   const [acertou, setAcertou] = useState(false)
   const [errou, setErrou] = useState(false)
-  const [quantidadeSelecionada, setquantidadeSelecionada] = useState(false)
+  const [quantidadeSelecionada, setquantidadeSelecionada] = useState()
   const [temaSelecionado, setTemaSelecionado] = useState('')
   const [resposta_correta, setResposta_correta] = useState()
+  const [corTema, setCorTema] = useState()
+
+
+  //reiniciar
+  const reiniciar = async () => {
+    // await axios.get('http://localhost:5000/temas')
+    setStart(false)
+    setIniciarPerguntas(false)
+    setInicio(true)
+    setShowScore(false)
+  }
+
 
   // ao iniciar buscamos os temas
   const iniciar = async () => {
     setInicio(false)
     setStart(true)
+    setCorTema()
     const themesAxios = await axios.get('http://localhost:5000/temas')
     setThemes(themesAxios.data)
+    setPerguntas()
+    setCurrentQuestion(0)
   }
 
   // ao selecionar o tema buscamos as perguntas
@@ -33,17 +48,12 @@ export default function App() {
     setPerguntas(perguntasAxios.data)
     setStart(false)
     setIniciarPerguntas(true)
+    setShowScore(false)
   }
 
   //quantidade de perguntas
   const escolha_quantidade = async (quant) => {
     tema(temaSelecionado, quant)
-  }
-
-  //cor do botão
-  const cor = async () => {
-    var botao = document.getElementById("tema");
-    botao.style.backgroundColor = "green"
   }
 
   // ao clicar em uma opção de resposta
@@ -52,7 +62,6 @@ export default function App() {
 
     if (correcaoAxios.data) {
       setResposta_correta(correcaoAxios.data.resposta)
-      console.log(correcaoAxios)
       setScore(correcaoAxios.data.pontuacao)
       if (correcaoAxios.data.correcao) {
         setAcertou(true)
@@ -81,6 +90,7 @@ export default function App() {
         <div className='question-count'>
           <span>Quiz</span>
           <h2 style={{ marginTop: '50px' }}>Sua pontuação final é {score}/100</h2>
+          <button onClick={reiniciar} style={{ marginTop: '80px' }}>Reiniciar Quiz</button>
         </div>
       ) : (
         <>
@@ -96,8 +106,10 @@ export default function App() {
               <div className='question-count'>
                 <span>Tema</span>
                 <div>
-                  {themes.map((theme) => (
-                    <button style={{ marginTop: '10px' }} id="tema" onClick={() => [setTemaSelecionado(theme.nome), cor()]}>{theme.nome}</button>))
+                  {themes.map((theme, index) => (
+                    <button style={{ marginTop: '10px',
+                    backgroundColor: index === corTema ? 'green' : '' 
+                  }} id="tema" onClick={() => [setTemaSelecionado(theme.nome), setCorTema(index)]}>{theme.nome}</button>))
                   }
                 </div>
               </div>
@@ -105,7 +117,7 @@ export default function App() {
                 <span>Quantidade</span>
                 <div>
                   {quant.map((quant) => (
-                    <button style={{ marginTop: '10px' }} onClick={() => [setquantidadeSelecionada(true), escolha_quantidade(quant)]}>{quant}</button>))
+                    <button style={{ marginTop: '10px'}} onClick={() => [setquantidadeSelecionada(true), escolha_quantidade(quant)]}>{quant}</button>))
                   }
                 </div>
               </div>
