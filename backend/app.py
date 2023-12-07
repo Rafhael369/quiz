@@ -22,13 +22,6 @@ def temas():
 def trazer_perguntas(tema, quantidade):
     global quiz
     return quiz.perguntas(tema, quantidade)
-
-@app.route("/finalizar", methods=["GET"])
-def finalizar():
-    if request.method == "POST":
-        return jsonify({"message": "POST"})
-    if request.method == "GET":
-        return jsonify({"message": "GET"})
     
 if __name__ == "__main__":
     app.run(debug=True)
